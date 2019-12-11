@@ -23,23 +23,57 @@
     mvn install:install-file -Dfile=D:/ojdbc8-12.2.0.1.jar -DgroupId=com.oracle -DartifactId=ojdbc8 -Dversion=12.2.0.1 -Dpackaging=jar
     ``` 
 
+## Сборка/накат/откат для тегов в каждом файле
+
 1. Собрать и накатить БД
     ``` 
-    mvn clean package liquibase:update -Dliquibase.contexts=dev -Dliquibase.changeLogFile=changelog.xml -Dliquibase.username=system -Dliquibase.password=oracle -Dliquibase.url=jdbc:oracle:thin:@//localhost:49161/xe
+    mvn clean package liquibase:update -Dliquibase.contexts=dev -Dliquibase.changeLogFile=version-in-every-file/changelog.xml -Dliquibase.username=system -Dliquibase.password=oracle -Dliquibase.url=jdbc:oracle:thin:@//localhost:49161/xe
     ```
 
+1. Собрать и откатить версию 1.0.0
+    ```
+    mvn clean package liquibase:rollback -Dliquibase.rollbackTag=1.0.0  -Dliquibase.contexts=dev -Dliquibase.changeLogFile=version-in-every-file/changelog.xml -Dliquibase.username=system -Dliquibase.password=oracle -Dliquibase.url=jdbc:oracle:thin:@//localhost:49161/xe
+    ```
 1. Собрать и откатить версию 1.1.0
     ```
-    mvn clean package liquibase:rollback -Dliquibase.rollbackTag=1.0.0  -Dliquibase.contexts=dev -Dliquibase.changeLogFile=changelog.xml -Dliquibase.username=system -Dliquibase.password=oracle -Dliquibase.url=jdbc:oracle:thin:@//localhost:49161/xe
-    ```
-1. Собрать и откатить версию 1.1.0
-    ```
-    mvn clean package liquibase:rollback -Dliquibase.rollbackTag=1.1.0  -Dliquibase.contexts=dev -Dliquibase.changeLogFile=changelog.xml -Dliquibase.username=system -Dliquibase.password=oracle -Dliquibase.url=jdbc:oracle:thin:@//localhost:49161/xe
+    mvn clean package liquibase:rollback -Dliquibase.rollbackTag=1.1.0  -Dliquibase.contexts=dev -Dliquibase.changeLogFile=version-in-every-file/changelog.xml -Dliquibase.username=system -Dliquibase.password=oracle -Dliquibase.url=jdbc:oracle:thin:@//localhost:49161/xe
     ```
 1. Собрать и откатить версию 1.2.0
     ```
-    mvn clean package liquibase:rollback -Dliquibase.rollbackTag=1.2.0  -Dliquibase.contexts=dev -Dliquibase.changeLogFile=changelog.xml -Dliquibase.username=system -Dliquibase.password=oracle -Dliquibase.url=jdbc:oracle:thin:@//localhost:49161/xe
+    mvn clean package liquibase:rollback -Dliquibase.rollbackTag=1.2.0  -Dliquibase.contexts=dev -Dliquibase.changeLogFile=version-in-every-file/changelog.xml -Dliquibase.username=system -Dliquibase.password=oracle -Dliquibase.url=jdbc:oracle:thin:@//localhost:49161/xe
     ```
+   
+Содержимое **DATABASECHANGELOG** после наката
+![version-in-every-file.png](version-in-every-file.png)
+
+Содержимое **DATABASECHANGELOG** после отката к версии 1.0.0
+![version-in-every-file-after-rollback.png](version-in-every-file-after-rollback.png)   
+   
+## Сборка/накат/откат для тегов в одном файле в папке с версией
+
+1. Собрать и накатить БД
+    ``` 
+    mvn clean package liquibase:update -Dliquibase.contexts=dev -Dliquibase.changeLogFile=version-by-directory/changelog.xml -Dliquibase.username=system -Dliquibase.password=oracle -Dliquibase.url=jdbc:oracle:thin:@//localhost:49161/xe
+    ```
+
+1. Собрать и откатить версию 1.0.0
+    ```
+    mvn clean package liquibase:rollback -Dliquibase.rollbackTag=1.0.0  -Dliquibase.contexts=dev -Dliquibase.changeLogFile=version-by-directory/changelog.xml -Dliquibase.username=system -Dliquibase.password=oracle -Dliquibase.url=jdbc:oracle:thin:@//localhost:49161/xe
+    ```
+1. Собрать и откатить версию 1.1.0
+    ```
+    mvn clean package liquibase:rollback -Dliquibase.rollbackTag=1.1.0  -Dliquibase.contexts=dev -Dliquibase.changeLogFile=version-by-directory/changelog.xml -Dliquibase.username=system -Dliquibase.password=oracle -Dliquibase.url=jdbc:oracle:thin:@//localhost:49161/xe
+    ```
+1. Собрать и откатить версию 1.2.0
+    ```
+    mvn clean package liquibase:rollback -Dliquibase.rollbackTag=1.2.0  -Dliquibase.contexts=dev -Dliquibase.changeLogFile=version-by-directory/changelog.xml -Dliquibase.username=system -Dliquibase.password=oracle -Dliquibase.url=jdbc:oracle:thin:@//localhost:49161/xe
+    ```   
+   
+Содержимое **DATABASECHANGELOG** после наката
+![version-by-directory.png](version-by-directory.png)
+
+Содержимое **DATABASECHANGELOG** после отката к версии 1.0.0
+![version-by-directory-after-rollback.png](version-by-directory-after-rollback.png)      
    
 ## Остановка контейнера   
 ```

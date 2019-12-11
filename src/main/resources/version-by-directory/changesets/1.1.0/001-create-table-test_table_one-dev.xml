@@ -1,0 +1,21 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet context="dev" author="ezhov" id="001-create-table-test_table_one-dev">
+        <createTable tableName="TEST_TABLE_ONE" schemaName="TEST_USER">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_name" type="VARCHAR(255)"/>
+            <column name="preferences" type="TEXT"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="TEST_TABLE_ONE" schemaName="TEST_USER"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

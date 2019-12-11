@@ -1,0 +1,15 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <include file="changesets/1.0.0/000-rollback-dev.xml" relativeToChangelogFile="true"/>
+    <include file="changesets/1.0.0/001-create-user-test_user-dev.xml" relativeToChangelogFile="true"/>
+    <include file="changesets/1.0.0/002-create-table-test_table-dev.xml" relativeToChangelogFile="true"/>
+    <include file="changesets/1.1.0/000-rollback-dev.xml" relativeToChangelogFile="true"/>
+    <include file="changesets/1.1.0/001-create-table-test_table_one-dev.xml" relativeToChangelogFile="true"/>
+    <include file="changesets/1.2.0/000-rollback-dev.xml" relativeToChangelogFile="true"/>
+    <include file="changesets/1.2.0/001-create-table-test_table_two-dev.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>
